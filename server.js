@@ -17,7 +17,7 @@ app.listen(3000, function(){
 
 app.get("/", function (req, res){
 	var html = fs.readFileSync("./index.html", "utf8");
-	db.all('SELECT categories.type FROM categories', function (err, row){
+	db.all('SELECT * FROM categories', function (err, row){
 		if (err){
 			console.log(err);
 		} else {
@@ -29,26 +29,32 @@ app.get("/", function (req, res){
 	
 });
 
-app.get("/categories/posts/new", function (req, res){
-	var newPostForm = fs.readFileSync("./views/new-post.html", "utf8");
-	res.send(newPostForm);
-});
 
 app.get("/categories/:id/posts", function (req, res){
 	var id = req.params.id;
-	console.log(id);
-	// console.log(id);
-	db.all("SELECT posts.title, posts.author, categories.type FROM posts INNER JOIN categories ON posts.categories_id = categories.id WHERE posts.categories_id=?", id, function (err, row){
-		if (err){
-			console.log(err);
-		} else {
-			console.log(row);
-			var template = fs.readFileSync("./views/categoriesShow.html", "utf8");
-			var html = ejs.render(template, {row: row});
-			res.send(html);
-		}
-	})
+
+	db.get("SELECT * FROM categories WHERE id = ?", id, function(err, row){
+		var category = row;
+		db.all("SELECT * FROM posts INNER JOIN categories ON posts.categories_id = categories.id WHERE posts.categories_id=?", id, function (err, row){
+			if(err){
+				console.log(err);
+			} else {
+				console.log(row);
+				var template = fs.readFileSync("./views/categoriesShow.html", "utf8");
+				var rendered = ejs.render(template, {posts: row, category: category});
+				res.send(rendered);
+			}
+		});
+	});
+
 })
+
+
+app.get("/categories/:id/posts/new", function (req, res){
+	var newPostForm = fs.readFileSync("./views/categoriesShow.html", "utf8");
+	res.send(newPostForm);
+});
+
 
 app.get("/categories/:catId/posts/:postsId", function (req, res){
 	var catId = req.params.catId;
@@ -61,17 +67,17 @@ app.get("/categories/:catId/posts/:postsId", function (req, res){
 			console.log(err);	
 		} else {
 			console.log(row);
-			var template = fs.readFileSync("./views/show-post.html", "utf8");
-			var html = ejs.render(template, {post: row});
-			res.send(html);
+			// var template = fs.readFileSync("./views/show-post.html", "utf8");
+			// var html = ejs.render(template, {post: row});
+			// res.send(html);
 		}
 	})
 })
 
-app.post("/categories/posts", function (req, res){
-	var newPost = req.body;
+// app.post("/categories/posts", function (req, res){
+// 	var newPost = req.body;
 
-})
+// })
 
 
 

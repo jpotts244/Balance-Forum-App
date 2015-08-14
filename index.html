@@ -5,8 +5,9 @@
 </head>
 <body>
 	<h1>Home Page TEST</h1>
-	<% categories.forEach(function (element){ %>
-		<h1> <%= element.type %></h1>
+	<% categories.forEach(function(element){ %>
+		
+		<a href="/categories/<%=element.id%>/posts"><%=element.type%></a>
 	<%	}) %>
 
 </body>

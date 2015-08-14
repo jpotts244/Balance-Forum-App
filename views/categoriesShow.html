@@ -4,12 +4,25 @@
 	<title>Categories</title>
 </head>
 <body>
+ 	<h1><%= category.type %></h1><br> 
 
-<p>topics</p>
-	 <% row.forEach(function(element){ %>
-	<h1> <%= element.type %> </h1> 
-	<h1> <%= element.title %> </h1>
-	<h1> <%= element.author %> </h1> 
-<% }) %> 
+	<% posts.forEach(function(e){ %>
+	<a href="/categories/<%=e.categories_id%>/posts/<%=e.id%>"><%=e.title%></a> 
+	<p>Title: <%= e.title %></p>
+	<p>Written By:<%= e.author %></p>
+	<% }) %>
+
+
+	<p>Write a new post!</p>
+	<form method="POST" action="/categories/posts">
+		<input type="text" name="title" placeholder="Title"><br>
+		<textarea cols="30" rows="10" name="content" placeholder="New Post"></textarea><br>
+		<!-- <input type="text" name="newPostBody" placeholder="Enter Content"> -->
+		<input type="text" name="author" placeholder="Username"><br>
+		<input type="hidden" name="rating">
+		<input type="hidden" name="categories_id">
+		<input type="submit" name="Add Post">
+	</form><br> 
+	
 </body>
 </html>
