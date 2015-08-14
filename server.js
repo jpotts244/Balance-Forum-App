@@ -111,30 +111,8 @@ app.post("/categories/:id/posts", function (req, res){
 
 });
 
-////FIX MEEEEE
-// app.get("/categories/:catId/posts/:postId/comments", function (req, res){
-// 	var catId = req.params.catId;
-// 	var postId = req.params.postId;
 
-// 	db.get("SELECT * FROM posts WHERE posts.categories_id=?", catId, function (err, row){
-// 		if (err) {
-// 			console.log(err);
-// 		} else {
-// 			var parentPost = row;
-// 			db.all("SELECT * FROM posts INNER JOIN comments ON comments.posts_id = posts.id WHERE comments.posts_id=?", postId, function (req, res){
-// 				if (err){
-// 					console.log(err);
-// 				} else {
-// 					console.log(row);
-// 					// var template = fs.readFileSync("./views/show_post.html", "utf8");
-// 					// var html = ejs.render(template, {parentPost: parentPost, row: row});
-// 					// res.send(html);
-// 				}
-// 			})
-// 		}
 
-// 	})
-// })
 
 
 
