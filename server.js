@@ -111,6 +111,19 @@ app.post("/categories/:id/posts", function (req, res){
 
 });
 
+app.put("/categories/:catId/posts/:postId", function (req, res){
+	var postId = req.params.postId;
+	var updateRating = req.body.rating;
+	var newRating = parseInt(updateRating) + 1;
+	db.get("UPDATE posts SET rating=? WHERE id=?", newRating, postId, function (err, row){
+		if (err){
+			console.log(err);
+		} else {
+			res.redirect("/");
+		}
+	})
+})
+
 app.post("/categories/:catId/posts/:postId", function (req, res){
 	var catId = req.params.catId;
 	var postId = req.params.postId;

@@ -8,6 +8,10 @@
 	<%= parentPost.content %><br>
 	<%= parentPost.author %><br>
 	Rating: <%= parentPost.rating %><br>
+	<form method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>?_method=PUT">
+		<input type="hidden" name="rating" value= <%=parentPost.rating%> >
+		<input type="submit" value="All About This">
+	</form>
 	
 	<% comments.forEach(function(comment){ %>
 	<p> <%=comment.message %></p>
