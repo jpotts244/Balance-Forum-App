@@ -111,7 +111,19 @@ app.post("/categories/:id/posts", function (req, res){
 
 });
 
+app.post("/categories/:catId/posts/:postId", function (req, res){
+	var catId = req.params.catId;
+	var postId = req.params.postId;
+	var newComment = req.body;
 
+	db.run("INSERT INTO comments (message, username, posts_id) VALUES (?,?,?)", newComment.message, newComment.username, postId, function (err){
+		if (err){
+			console.log(err);
+		} else {
+			res.redirect("/");
+		}
+	})
+})
 
 
 
