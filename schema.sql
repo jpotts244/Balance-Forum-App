@@ -32,3 +32,15 @@ INSERT INTO posts (title, content, author, rating, categories_id) VALUES ('testy
 INSERT INTO posts (title, content, author, rating, categories_id) VALUES ('thisismadness', 'ineedtosleep', 'yahhhhhh', 0, 4);
 
 INSERT INTO comments (message, username, posts_id) VALUES ('Hey @AIIIJACQUI, preach it gurl. Do you think it is possible to find something comparable to that level of deliciousness? #whitecheddar, keep me posted!', 'theOtherWhiteCheese', 3);
+INSERT INTO comments (message, username, posts_id) VALUES ('Hey, this is pretty jazzy #ballin', 'TheRealSlimShady', 1);
+INSERT INTO comments (message, username, posts_id) VALUES ('yoyo', 'workin9to5', 2);
+INSERT INTO comments (message, username, posts_id) VALUES ('im all about this', 'workin9to5', 4);
+INSERT INTO comments (message, username, posts_id) VALUES ('stopthehate', 'workin9to1130', 5);
+
+
+
+
+
+
+
+

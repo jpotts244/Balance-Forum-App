@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Categories</title>
+	<title><%=category.type%></title>
 </head>
 <body>
  	<h1><%= category.type %></h1><br> 
 
 	<% posts.forEach(function(post){ %>
 	<a href="/categories/<%=post.categories_id%>/posts/<%=post.id%>"><%=post.title%></a> 
-
 	<p>Title: <%= post.title %></p>
 	<p>Written By:<%= post.author %></p>
 	<% }) %>

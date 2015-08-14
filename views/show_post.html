@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Read A Post</title>
+	<title><%=parentPost.title%></title>
 </head>
 <body>
-	<p><%= post.type %></p> 
-	<p> <%= post.title %></p>
-	<p><%= post.content %></p>
-	<p><%= post.author %></p>
-
+	<%= parentPost.title %><br>
+	<%= parentPost.content %><br>
+	<%= parentPost.author %><br>
+	Rating: <%= parentPost.rating %><br>
+	
 	<% comments.forEach(function(comment){ %>
 	<p> <%=comment.message %></p>
 	<p> <%=comment.username %></p>
-<% }) %>
+	<% }) %>
+
+	<form method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>">
+		<textarea cols="20" rows="10" name="message" placeholder="Add a Comment"></textarea><br>
+		<input type="text" name="username" placeholder="Username"><br>
+		<input type="submit" value="Add Comment">
+	</form>
+
+
+
+
 </body>
 </html>
