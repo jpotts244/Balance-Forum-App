@@ -1,0 +1,86 @@
+/*html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+   
+    font-family: 'Slabo 27px', serif;
+}*/
+
+html * {
+	font-family: Georgia;
+}
+
+
+header {
+	text-align: center;
+
+}
+
+.background {
+	height: 100%;
+}
+
+.pure-menu-link:hover {
+	background-color: #87CEEB;
+}
+
+.banner {
+	background-color: #B0E0E6;
+
+}
+
+.main-content, .form {
+	padding: 1em;
+	padding-top: 1em;
+
+}
+
+.posts {
+	background-color: #DCDCDC;
+	border: 2px solid black;
+	padding: 2em;
+
+}
+
+
+.lower-content {
+	padding-top: 2em;
+	padding: 1em;
+	width: 92%;
+
+}
+
+.footerImage img{
+	height: 80px;
+	width: 80px;
+	height: 100%;
+	border-radius: 50%;
+
+}
+
+.footerImage, .footer-container {
+	text-align: center;
+
+
+}
+
+
+.box {
+	background-color: #FFF5EE;
+}
+
+.submit-button {
+	background-color: blue;
+}
+
+.comment-form {
+	position: relative;
+	left: 20%;
+	width: 600px;
+
+}
+
+.like-button {
+	position: relative;
+
+}
+
+

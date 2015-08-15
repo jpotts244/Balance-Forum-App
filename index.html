@@ -2,13 +2,45 @@
 <html>
 <head>
 	<title>Balance</title>
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+	
+	<link rel="stylesheet" href="/style.css">
 </head>
-<body>
-	<h1>Home Page TEST</h1>
-	<% categories.forEach(function(element){ %>
-		
-		<a href="/categories/<%=element.id%>/posts"><%=element.type%></a>
-	<%	}) %>
+<body background="/subtle_white_feathers.png">
 
+	<div class="pure-g container">
+		<header class="pure-u-1-1">
+	
+				<h1>Balance</h1>
+
+			
+				<div class="pure-menu pure-menu-horizontal banner">
+			    	<a href="/info" class="pure-menu-heading pure-menu-link">About Balance</a>
+					    <ul class="pure-menu-list">
+					        <li class="pure-menu-item"><a href="/categories/1/posts" class="pure-menu-link">General</a></li>
+					        <li class="pure-menu-item"><a href="/categories/2/posts" class="pure-menu-link">Stress Prevention</a></li>
+					        <li class="pure-menu-item"><a href="/categories/3/posts" class="pure-menu-link">Recipes</a></li>
+					        <li class="pure-menu-item"><a href="/categories/4/posts" class="pure-menu-link">Yoga</a></li>
+					        <li class="pure-menu-item"><a href="/categories/5/posts" class="pure-menu-link">The Alexander Technique</a></li>
+					    </ul>
+				
+				</div>
+		</header>
+
+		<div class="pure-u-1-1">
+
+			<footer class="footer-container">
+				<div class="footerImage">
+					<img src="/cassie.JPG">
+				</div>
+				<h5>Creating balance for everyday</h5>
+				<p>Jacq &copy 2015</p>
+			</footer>
+		</div>
+
+	</div>
+	<script type="text/javascript" scr="scripts.js"></script>
 </body>
 </html>

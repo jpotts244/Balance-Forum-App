@@ -2,6 +2,8 @@ var sqlite3 = require('sqlite3');
 var db = new sqlite3.Database('forum.db');
 var express = require('express');
 var app = express();
+app.use(express.static('public'));
+app.use(express.static('images'));
 var fs = require('fs');
 var ejs = require('ejs');
 
@@ -11,9 +13,13 @@ app.use(urlencodedBodyParser);
 var methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
+
+
 app.listen(3000, function(){
 	console.log('Listening');
 })
+
+
 
 app.get("/", function (req, res){
 	var html = fs.readFileSync("./index.html", "utf8");
@@ -29,6 +35,11 @@ app.get("/", function (req, res){
 	
 });
 
+app.get("/info", function (req, res){
+	var html = fs.readFileSync("./info.html", "utf8");
+	res.send(html);
+})
+
 app.get("/categories/:id/posts", function (req, res){
 	var id = req.params.id;
 
@@ -38,20 +49,26 @@ app.get("/categories/:id/posts", function (req, res){
 			if(err){
 				console.log(err);
 			} else {
-				console.log(row);
-				var template = fs.readFileSync("./views/categories_show.html", "utf8");
-				var rendered = ejs.render(template, {posts: row, category: category});
-				res.send(rendered);
+				var posts = row
+				db.all("SELECT posts_id, COUNT(posts_id) AS count FROM comments INNER JOIN posts ON comments.posts_id = posts.id GROUP BY posts_id ORDER BY count DESC", function (err, row){
+					var orderedPosts = row;
+					var template = fs.readFileSync("./views/categories_show.html", "utf8");
+					var rendered = ejs.render(template, {orderedPosts: orderedPosts, posts: posts, category: category});
+					res.send(rendered);
+
+				})
 			}
 		});
 	});
 
 })
+// db.get("SELECT posts_id, COUNT(posts_id) AS count FROM comments INNER JOIN posts ON comments.posts_id = posts.id GROUP BY posts_id ORDER BY count DESC"
 
 app.get("/categories/:id/posts/new", function (req, res){
 	var newPostForm = fs.readFileSync("./views/categories_show.html", "utf8");
 	res.send(newPostForm);
 });
+
 
 
 // app.get("/categories/:catId/posts/:postId", function (req, res){
@@ -98,6 +115,8 @@ app.get("/categories/:catId/posts/:postId", function (req, res){
 	})
 })
 
+
+
 app.post("/categories/:id/posts", function (req, res){
 	var id = req.params.id;
 	var newPost = req.body;
@@ -111,18 +130,7 @@ app.post("/categories/:id/posts", function (req, res){
 
 });
 
-app.put("/categories/:catId/posts/:postId", function (req, res){
-	var postId = req.params.postId;
-	var updateRating = req.body.rating;
-	var newRating = parseInt(updateRating) + 1;
-	db.get("UPDATE posts SET rating=? WHERE id=?", newRating, postId, function (err, row){
-		if (err){
-			console.log(err);
-		} else {
-			res.redirect("/");
-		}
-	})
-})
+
 
 app.post("/categories/:catId/posts/:postId", function (req, res){
 	var catId = req.params.catId;
@@ -139,10 +147,17 @@ app.post("/categories/:catId/posts/:postId", function (req, res){
 })
 
 
+app.put("/categories/:catId/posts/:postId", function (req, res){
+	var postId = req.params.postId;
+	var updateRating = req.body.rating;
+	var newRating = parseInt(updateRating) + 1;
+	db.get("UPDATE posts SET rating=? WHERE id=?", newRating, postId, function (err, row){
+		if (err){
+			console.log(err);
+		} else {
+			res.redirect("/");
 
-
-
-
-
-
+		}
+	})
+})
 

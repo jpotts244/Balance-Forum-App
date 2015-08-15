@@ -2,30 +2,73 @@
 <html>
 <head>
 	<title><%=parentPost.title%></title>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+	<link rel="stylesheet" href="/style.css">
 </head>
-<body>
-	<%= parentPost.title %><br>
-	<%= parentPost.content %><br>
-	<%= parentPost.author %><br>
-	Rating: <%= parentPost.rating %><br>
-	<form method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>?_method=PUT">
-		<input type="hidden" name="rating" value= <%=parentPost.rating%> >
-		<input type="submit" value="All About This">
-	</form>
+<body background="/subtle_white_feathers.png">
+	<div class="pure-g container">
+		<header class="pure-u-1-1">
+			<h1>Balance</h1>
+			<div class="pure-menu pure-menu-horizontal banner">
+		    	<a href="/info" class="pure-menu-heading pure-menu-link">About Balance</a>
+				    <ul class="pure-menu-list">
+				 		<li class="pure-menu-item"><a href="/" class="pure-menu-link">Home</a></li>
+				        <li class="pure-menu-item"><a href="/categories/1/posts" class="pure-menu-link">General</a></li>
+				        <li class="pure-menu-item"><a href="/categories/2/posts" class="pure-menu-link">Stress Prevention</a></li>
+				        <li class="pure-menu-item"><a href="/categories/3/posts" class="pure-menu-link">Recipes</a></li>
+				        <li class="pure-menu-item"><a href="/categories/4/posts" class="pure-menu-link">Yoga</a></li>
+				        <li class="pure-menu-item"><a href="/categories/5/posts" class="pure-menu-link">The Alexander Technique</a></li>
+				    </ul>
+				
+				</div>
+		</header>
+		<div class="lower-content">
+			<div class="pure-u-1-1 posts">
+				<h4><u><%= parentPost.title %></u></h4>
+				<p><%= parentPost.content %></p>
+				<p>Written By: <%= parentPost.author %></p>
+				<p>Rating: <%= parentPost.rating %></p>
+			</div>
+			<div class="pure-u-1-1 form">
+				<form method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>?_method=PUT">
+					<input type="hidden" name="rating" value= <%=parentPost.rating%> >
+					<input type="submit" class="pure-button like-button" value="All About This">
+				</form>
+			</div>
+		</div>
+		
+			<div class="pure-u-2-5 main-content">
+				<h2>Comments</h2>
+				<ul>
+				<% comments.forEach(function(comment){ %>
+				<li> <%=comment.message %></li>
+				<p> Username: <%=comment.username %></p>
+				<% }) %>
+			</ul>
+			</div>
+			<div class="pure-u-3-5 comment-form">
+				<h4>Post a Comment</h4>
+				<form class="pure-form" method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>">
+					<fieldset class="pure-group">
+						<textarea cols="20" rows="5" class="pure-input-1-3" name="message" placeholder="Add a Comment"></textarea>
+						<input type="text" class="pure-input-1-3" name="username" placeholder="Username">
+					</fieldset>
+					<input type="submit" class="pure-button" value="Add Comment">
+				</form><br>
+			</div>
+		</div>
 	
-	<% comments.forEach(function(comment){ %>
-	<p> <%=comment.message %></p>
-	<p> <%=comment.username %></p>
-	<% }) %>
+	<div class="pure-u-1-1">
+			<footer class="footer-container">
+				<div class="footerImage">
+					<img src="/cassie.JPG">
+				</div>
+				<h5>Creating balance for everyday</h5>
+				<p>Jacq &copy 2015</p>
+			</footer>
+		</div>
 
-	<form method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>">
-		<textarea cols="20" rows="10" name="message" placeholder="Add a Comment"></textarea><br>
-		<input type="text" name="username" placeholder="Username"><br>
-		<input type="submit" value="Add Comment">
-	</form>
-
-
-
-
+</div>
 </body>
 </html>
