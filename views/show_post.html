@@ -4,6 +4,7 @@
 	<title><%=parentPost.title%></title>
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/style.css">
 </head>
 <body background="/subtle_white_feathers.png">
@@ -31,15 +32,18 @@
 				<p>Rating: <%= parentPost.rating %></p>
 			</div>
 			<div class="pure-u-1-1 form">
+				
 				<form method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>?_method=PUT">
 					<input type="hidden" name="rating" value= <%=parentPost.rating%> >
-					<input type="submit" class="pure-button like-button" value="All About This">
+
+					<button type="submit" class="like-button"> <i class="fa fa-money"></i></button><h3 class="button">All About This</h3>
 				</form>
 			</div>
 		</div>
 		
 			<div class="pure-u-2-5 main-content">
 				<h2>Comments</h2>
+				
 				<ul>
 				<% comments.forEach(function(comment){ %>
 				<li> <%=comment.message %></li>

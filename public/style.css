@@ -77,7 +77,20 @@ header {
 
 }
 
+.button {
+	display: inline;
+	padding: 5px;
+}
+
 .like-button {
-	position: relative;
+	font-size: 25px;
+	display: inline;
+	background-color: #DCDCDC;
+	border: 1px solid black;
+
+}
+
+.like-button:hover {
+	background-color: green;
 
 }
