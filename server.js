@@ -67,27 +67,6 @@ app.get("/categories/:id/posts/new", function (req, res){
 	res.send(newPostForm);
 });
 
-
-
-// app.get("/categories/:catId/posts/:postId", function (req, res){
-// 	var catId = req.params.catId;
-// 	var postId = req.params.postId;
-// 	db.get("SELECT * FROM categories WHERE id=?", catId, function (err, row){
-// 		var category = row;
-	
-// 	db.get("SELECT * FROM posts WHERE posts.id=? AND posts.categories_id=?", postId, catId, function (err, row){
-// 		if (err){
-// 			console.log(err);	
-// 		} else {
-// 			console.log(row);
-// 			var template = fs.readFileSync("./views/show_post.html", "utf8");
-// 			var html = ejs.render(template, {post: row, category: category});
-// 			res.send(html);
-// 		}
-// 	})
-// 	})
-// })
-
 app.get("/categories/:catId/posts/:postId", function (req, res){
 	var catId = req.params.catId;
 	var postId = req.params.postId;
