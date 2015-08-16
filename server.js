@@ -45,18 +45,15 @@ app.get("/categories/:id/posts", function (req, res){
 
 	db.get("SELECT * FROM categories WHERE id=?", id, function(err, row){
 		var category = row;
-		db.all("SELECT * FROM categories INNER JOIN posts ON posts.categories_id = categories.id WHERE posts.categories_id=?", id, function (err, row){
+		db.all("SELECT * FROM posts WHERE posts.categories_id=? ORDER BY posts.rating DESC", id, function (err, row){
 			if(err){
 				console.log(err);
 			} else {
 				var posts = row
-				db.all("SELECT posts_id, COUNT(posts_id) AS count FROM comments INNER JOIN posts ON comments.posts_id = posts.id GROUP BY posts_id ORDER BY count DESC", function (err, row){
-					var orderedPosts = row;
 					var template = fs.readFileSync("./views/categories_show.html", "utf8");
-					var rendered = ejs.render(template, {orderedPosts: orderedPosts, posts: posts, category: category});
+					var rendered = ejs.render(template, {posts: posts, category: category});
 					res.send(rendered);
 
-				})
 			}
 		});
 	});
