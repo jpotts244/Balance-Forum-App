@@ -85,12 +85,21 @@ header {
 .like-button {
 	font-size: 25px;
 	display: inline;
-	background-color: #DCDCDC;
-	border: 1px solid black;
+	background-color: transparent;
+	border: none;
+	padding: none; 
 
 }
 
-.like-button:hover {
-	background-color: green;
+.fa-hand-rock-o:hover {
+
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+
 
 }
+
+
+
+
