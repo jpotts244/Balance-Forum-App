@@ -100,6 +100,23 @@ header {
 
 }
 
+.dislike-button {
+	font-size: 25px;
+	display: inline;
+	background-color: transparent;
+	border: none;
+	padding: none; 
+}
+
+.fa-thumbs-o-down:hover {
+
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+
+
+}
+
 
 
 

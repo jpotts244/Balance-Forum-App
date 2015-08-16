@@ -31,12 +31,21 @@
 				<p>Written By: <%= parentPost.author %></p>
 				<p>Rating: <%= parentPost.rating %></p>
 			</div>
-			<div class="pure-u-1-1 form">
+			<div class="pure-u-1-5 form">
 				
 				<form method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>?_method=PUT">
 					<input type="hidden" name="rating" value= <%=parentPost.rating%> >
 
 					<button type="submit" class="like-button"> <i class="fa fa-hand-rock-o"></i></button><h3 class="button">All About This</h3>
+				</form>
+			</div>
+		
+		<div class="pure-u-2-5 form">
+				
+				<form method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>/minus?_method=PUT">
+					<input type="hidden" name="rating" value= <%=parentPost.rating%> >
+
+					<button type="submit" class="dislike-button"> <i class="fa fa-thumbs-o-down"></i></button><h3 class="button">Excuse You</h3>
 				</form>
 			</div>
 		</div>

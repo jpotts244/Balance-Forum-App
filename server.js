@@ -159,3 +159,17 @@ app.put("/categories/:catId/posts/:postId", function (req, res){
 	})
 })
 
+app.put("/categories/:catId/posts/:postId/minus", function (req, res){
+	var postId = req.params.postId;
+	var updateRating = req.body.rating;
+	var newRating = parseInt(updateRating) - 1;
+	db.get("UPDATE posts SET rating=? WHERE id=?", newRating, postId, function (err, row){
+		if (err){
+			console.log(err);
+		} else {
+			res.redirect("/");
+
+		}
+	})
+})
+
