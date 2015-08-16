@@ -27,7 +27,7 @@
 			<h1><%= category.type %></h1><br> 
 			<% posts.forEach(function(post){ %>
 				<a href="/categories/<%=post.categories_id%>/posts/<%=post.id%>"><%=post.title%></a> 
-				<p>Title: <%= post.title %></p>
+				<h3>Title: <%= post.title %></h3>
 				<p>Written By:<%= post.author %></p>
 			<% }) %>
 		</div>
