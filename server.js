@@ -28,7 +28,6 @@ app.get("/", function (req, res){
 		if (err){
 			console.log(err);
 		} else {
-			console.log(row);
 			var rendered = ejs.render(html, {categories: row});
 			res.send(rendered);
 		} 
@@ -82,7 +81,6 @@ app.get("/categories/:catId/posts/:postId", function (req, res){
 				if (err) {
 					console.log(err);
 				} else {
-					console.log(row);
 					var template = fs.readFileSync("./views/show_post.html", "utf8");
 					var html = ejs.render(template, {parentPost: parentPost, comments: row});
 					res.send(html);
@@ -133,7 +131,6 @@ app.put("/categories/:catId/posts/:postId", function (req, res){
 			console.log(err);
 		} else {
 			res.redirect("/");
-
 		}
 	})
 })
@@ -151,4 +148,3 @@ app.put("/categories/:catId/posts/:postId/minus", function (req, res){
 		}
 	})
 })
-

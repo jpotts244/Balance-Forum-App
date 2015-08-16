@@ -50,17 +50,18 @@
 				</div>
 			
 			
-				<div class="pure-u-2-5 main-content">
+				<div class="pure-u-3-5 main-content">
 					<h2>Comments</h2>
 					
-					<ul>
+				
 					<% comments.forEach(function(comment){ %>
-					<li> <%=comment.message %></li>
-					<p> Username: <%=comment.username %></p>
+					<h4> Username: <%=comment.username %></h4>
+					<p> --<%=comment.message %></p>
+					
 					<% }) %>
-				</ul>
+		
 				</div>
-				<div class="pure-u-3-5 comment-form">
+				<div class="pure-u-2-5 comment-form">
 					<h4>Post a Comment</h4>
 					<form class="pure-form" method="POST" action="/categories/<%=parentPost.categories_id%>/posts/<%=parentPost.id%>">
 						<fieldset class="pure-group">
