@@ -1,6 +1,6 @@
 
 html * {
-	font-family: Georgia;
+	/*font-family: Georgia;*/
 }
 
 header {
@@ -15,6 +15,11 @@ header {
 
 h1 {
 	font-size: 60px;
+	
+}
+
+h1, h2, .subtitle {
+	font-family: 'Shadows Into Light', cursive;
 }
 
 .background {
