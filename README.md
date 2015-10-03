@@ -1,7 +1,7 @@
 # WDI Project 2- Forum
 
 ## Objective
-To make a basic full-stack forum application using JavaScript, Sqlite3, Express, HTML, and CSS.
+To make a basic full-stack forum application using JavaScript, Sqlite3, Express, Node, HTML, and CSS.
 
 ## Minimum Viable Product
 To create a forum application that allows users to create topic threads and comment on other user's posts.  
